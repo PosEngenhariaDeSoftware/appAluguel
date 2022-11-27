@@ -1,2 +1,4 @@
-package br.edu.infnet.appaluguel.modelo.persistencia;public class ClienteRepository {
+package br.edu.infnet.appaluguel.modelo.persistencia;
+
+public interface ClienteRepository {
 }
