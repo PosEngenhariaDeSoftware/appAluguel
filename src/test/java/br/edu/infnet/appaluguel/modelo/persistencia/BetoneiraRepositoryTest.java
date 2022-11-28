@@ -1,4 +1,4 @@
-package br.edu.infnet.appaluguel.persistencia;
+package br.edu.infnet.appaluguel.modelo.persistencia;
 
 import br.edu.infnet.appaluguel.modelo.entidade.Betoneira;
 import br.edu.infnet.appaluguel.modelo.entidade.Equipamento;
