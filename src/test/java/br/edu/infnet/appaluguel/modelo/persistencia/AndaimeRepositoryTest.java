@@ -1,6 +1,5 @@
 package br.edu.infnet.appaluguel.modelo.persistencia;
 
-import br.edu.infnet.appaluguel.modelo.entidade.Aluguel;
 import br.edu.infnet.appaluguel.modelo.entidade.Andaime;
 import br.edu.infnet.appaluguel.modelo.entidade.Cliente;
 import br.edu.infnet.appaluguel.modelo.entidade.enums.TipoEnum;
@@ -23,7 +22,7 @@ public class AndaimeRepositoryTest {
     private ClienteRepository clienteRepository;
 
     @Test
-    void adicionarAndaime(){
+    void adicionarAndaime() {
         Andaime andaime = new Andaime(TipoEnum.UM_POR_UM);
 
         andaime.setValorCompra(new BigDecimal("100.00"));
@@ -39,7 +38,7 @@ public class AndaimeRepositoryTest {
     }
 
     @Test
-    void buscarAndaimePorId(){
+    void buscarAndaimePorId() {
         Andaime andaime = andaimeRepository.findById(1L).get();
 
         System.out.println(andaime);
@@ -48,7 +47,7 @@ public class AndaimeRepositoryTest {
     }
 
     @Test
-    void atualizarAndaime(){
+    void atualizarAndaime() {
         Andaime andaime = andaimeRepository.findById(1L).get();
 
         andaime.setValorUnitarioAluguel(new BigDecimal("150.00"));
@@ -59,7 +58,7 @@ public class AndaimeRepositoryTest {
     }
 
     @Test
-    void excluirAndaime(){
+    void excluirAndaime() {
         Andaime andaime = andaimeRepository.findById(1L).get();
 
         andaimeRepository.delete(andaime);
@@ -68,7 +67,7 @@ public class AndaimeRepositoryTest {
     }
 
     @Test
-    void relacionarAndaimeComAluguel(){
+    void relacionarAndaimeComAluguel() {
         Cliente cliente = clienteRepository.findByCpf("06698875421");
 
         Andaime andaime = andaimeRepository.findById(3L).get();

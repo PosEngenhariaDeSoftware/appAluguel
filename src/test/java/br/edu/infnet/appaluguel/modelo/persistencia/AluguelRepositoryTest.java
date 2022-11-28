@@ -3,7 +3,6 @@ package br.edu.infnet.appaluguel.modelo.persistencia;
 import br.edu.infnet.appaluguel.modelo.entidade.Aluguel;
 import br.edu.infnet.appaluguel.modelo.entidade.Cliente;
 import br.edu.infnet.appaluguel.modelo.entidade.enums.StatusEnum;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +41,7 @@ public class AluguelRepositoryTest {
 
     @Test
     public void saveDeveriaSalvarAluguelComCliente() {
-        Cliente cliente = clienteRepository.findByCpf("68612245578469");
+        Cliente cliente = clienteRepository.findByCpf("06698878963");
 
         LocalDateTime dataInicio = LocalDateTime.of(2022, Month.NOVEMBER, 27, 14, 00, 00);
         Aluguel aluguel = new Aluguel();
@@ -55,7 +54,7 @@ public class AluguelRepositoryTest {
 
         Aluguel aluguelSalvo = aluguelRepository.save(aluguel);
 
-        assertEquals("68612245578469", aluguelSalvo.getCliente().getCpf());
+        assertEquals("06698878963", aluguelSalvo.getCliente().getCpf());
         assertEquals("Samambaia", aluguelSalvo.getLocalizacao());
         assertEquals(aluguel.getPeriodoDias(), aluguelSalvo.getPeriodoDias());
     }
@@ -96,5 +95,15 @@ public class AluguelRepositoryTest {
 
         assertEquals(clienteEncontrado.getId(), clienteSalvoComAlugueis.getId());
         assertEquals(alugueis.size(), clienteSalvoComAlugueis.getAlugueis().size());
+    }
+
+    @Test
+    public void deleteDeveriaDeletarOAluguelDoClientePesquisadoPorCpf() {
+        Cliente clienteEncontrado = clienteRepository.findByCpf("06698875421");
+        Aluguel aluguelCancelado = clienteEncontrado.getAlugueis().get(0);
+        aluguelRepository.deleteById(aluguelCancelado.getId());
+        Cliente clienteAtualizado = clienteRepository.findByCpf("06698875421");
+
+        assertEquals(1, clienteAtualizado.getAlugueis().size());
     }
 }

@@ -1,9 +1,6 @@
 package br.edu.infnet.appaluguel.modelo.persistencia;
 
 import br.edu.infnet.appaluguel.modelo.entidade.Betoneira;
-import br.edu.infnet.appaluguel.modelo.entidade.Equipamento;
-import br.edu.infnet.appaluguel.modelo.persistencia.BetoneiraRepository;
-import br.edu.infnet.appaluguel.modelo.persistencia.EquipamentoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,11 +17,9 @@ public class BetoneiraRepositoryTest {
     @Autowired
     private BetoneiraRepository betoneiraRepository;
 
-
-
     @Test
-    void adicionarBetoneira(){
-        Betoneira betoneiraEquipamento = new Betoneira( "CSM", LocalDateTime.now(), "Usada");
+    void adicionarBetoneira() {
+        Betoneira betoneiraEquipamento = new Betoneira("CSM", LocalDateTime.now(), "Usada");
 
         betoneiraEquipamento.setValorCompra(new BigDecimal("2500.00"));
 
@@ -39,7 +34,7 @@ public class BetoneiraRepositoryTest {
     }
 
     @Test
-    void buscarBetoneiraPorId(){
+    void buscarBetoneiraPorId() {
         Betoneira betoneira = betoneiraRepository.findById(1L).get();
 
         System.out.println(betoneira);
@@ -48,7 +43,7 @@ public class BetoneiraRepositoryTest {
     }
 
     @Test
-    void atualizarBetoneira(){
+    void atualizarBetoneira() {
         Betoneira betoneira = betoneiraRepository.findById(1L).get();
 
         betoneira.setValorUnitarioAluguel(new BigDecimal("300.00"));
@@ -59,13 +54,11 @@ public class BetoneiraRepositoryTest {
     }
 
     @Test
-    void excluirBetoneira(){
+    void excluirBetoneira() {
         Betoneira betoneira = betoneiraRepository.findById(1L).get();
 
         betoneiraRepository.delete(betoneira);
 
         assertFalse(betoneiraRepository.existsById(1L));
     }
-
-
 }

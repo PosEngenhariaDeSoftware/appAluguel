@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Ferramenta extends Equipamento{
+public class Ferramenta extends Equipamento {
 
     private String nome;
     private Boolean eletrica;

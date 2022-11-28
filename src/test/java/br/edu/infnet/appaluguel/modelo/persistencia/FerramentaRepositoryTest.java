@@ -1,8 +1,6 @@
 package br.edu.infnet.appaluguel.modelo.persistencia;
 
-import br.edu.infnet.appaluguel.modelo.entidade.Andaime;
 import br.edu.infnet.appaluguel.modelo.entidade.Ferramenta;
-import br.edu.infnet.appaluguel.modelo.entidade.enums.TipoEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,10 +16,8 @@ public class FerramentaRepositoryTest {
     @Autowired
     private FerramentaRepository ferramentaRepository;
 
-
-
     @Test
-    void adicionarFerramenta(){
+    void adicionarFerramenta() {
         Ferramenta ferramenta = new Ferramenta("Furadeira", true);
 
         ferramenta.setValorCompra(new BigDecimal("200.00"));
@@ -37,7 +33,7 @@ public class FerramentaRepositoryTest {
     }
 
     @Test
-    void buscarFerramentaPorId(){
+    void buscarFerramentaPorId() {
         Ferramenta ferramenta = ferramentaRepository.findById(1L).get();
 
         System.out.println(ferramenta);
@@ -46,7 +42,7 @@ public class FerramentaRepositoryTest {
     }
 
     @Test
-    void atualizarAndaime(){
+    void atualizarAndaime() {
         Ferramenta ferramenta = ferramentaRepository.findById(1L).get();
 
         ferramenta.setValorUnitarioAluguel(new BigDecimal("60.00"));
@@ -57,13 +53,11 @@ public class FerramentaRepositoryTest {
     }
 
     @Test
-    void excluirAndaime(){
+    void excluirAndaime() {
         Ferramenta ferramenta = ferramentaRepository.findById(1L).get();
 
         ferramentaRepository.delete(ferramenta);
 
         assertFalse(ferramentaRepository.existsById(1L));
     }
-
-
 }

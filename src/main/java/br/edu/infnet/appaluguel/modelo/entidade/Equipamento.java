@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+
 @Entity
 @Table(name = "equipamento")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public abstract class Equipamento {
     @Id
@@ -18,7 +20,7 @@ public abstract class Equipamento {
 
     private String nome;
 
-    private BigDecimal  valorCompra;
+    private BigDecimal valorCompra;
 
     private BigDecimal valorUnitarioAluguel;
 

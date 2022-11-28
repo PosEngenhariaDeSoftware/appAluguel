@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Betoneira extends Equipamento{
+public class Betoneira extends Equipamento {
 
     private String marca;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
