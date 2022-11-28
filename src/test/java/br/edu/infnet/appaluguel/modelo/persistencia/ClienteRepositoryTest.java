@@ -1,42 +1,43 @@
 package br.edu.infnet.appaluguel.modelo.persistencia;
 
 import br.edu.infnet.appaluguel.modelo.entidade.Cliente;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 public class ClienteRepositoryTest {
 
+    @Autowired
+    private AluguelRepository aluguelRepository;
     @Autowired
     private ClienteRepository clienteRepository;
 
     @Test
     public void saveDeveriaSalvarCliente() {
         Cliente cliente = new Cliente();
-        cliente.setNome("Junia");
-        cliente.setCpf("65478932145");
-        cliente.setTelefone("61998978263");
+        cliente.setNome("Stu");
+        cliente.setCpf("06698875421");
+        cliente.setTelefone("61818278543");
         cliente.setWhatsapp(true);
 
         Cliente clienteSalvo = clienteRepository.save(cliente);
 
-        assertEquals("Junia", clienteSalvo.getNome());
+        assertEquals("Stu", clienteSalvo.getNome());
     }
 
     @Test
     public void saveAndFlushDeveriaAtualizarCliente() {
-        Cliente clienteEncontrado = clienteRepository.findById(1L).get();
-        clienteEncontrado.setTelefone("61887475263");
+        Cliente clienteEncontrado = clienteRepository.findById(6L).get();
+        clienteEncontrado.setTelefone("61887895263");
+        clienteEncontrado.setNome("Elena");
         Cliente clienteAlterado = clienteRepository.saveAndFlush(clienteEncontrado);
 
-        assertEquals("61887475263", clienteAlterado.getTelefone());
+        assertEquals("61887895263", clienteAlterado.getTelefone());
+        assertEquals(clienteEncontrado.getNome(), clienteAlterado.getNome());
     }
 
     @Test
