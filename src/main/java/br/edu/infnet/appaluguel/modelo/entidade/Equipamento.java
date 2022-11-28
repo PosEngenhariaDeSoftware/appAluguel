@@ -24,9 +24,7 @@ public abstract class Equipamento {
 
     private int quantidade;
 
-    /*
-    @OneToMany
-    @JoinColumn(name = "cdAluguel")
+    @ManyToOne(targetEntity = Aluguel.class)
+    @JoinColumn(name = "aluguel_id")
     private Aluguel aluguel;
-     */
 }

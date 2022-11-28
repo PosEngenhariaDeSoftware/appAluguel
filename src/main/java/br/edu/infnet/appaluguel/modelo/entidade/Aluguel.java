@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "aluguel")
@@ -33,4 +34,7 @@ public class Aluguel {
     @ManyToOne(targetEntity = Cliente.class)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "aluguel", fetch = FetchType.EAGER)
+    private List<Equipamento> equipamentos;
 }

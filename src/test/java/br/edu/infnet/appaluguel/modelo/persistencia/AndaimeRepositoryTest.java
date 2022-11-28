@@ -1,14 +1,14 @@
 package br.edu.infnet.appaluguel.modelo.persistencia;
 
+import br.edu.infnet.appaluguel.modelo.entidade.Aluguel;
 import br.edu.infnet.appaluguel.modelo.entidade.Andaime;
-import br.edu.infnet.appaluguel.modelo.entidade.Betoneira;
+import br.edu.infnet.appaluguel.modelo.entidade.Cliente;
 import br.edu.infnet.appaluguel.modelo.entidade.enums.TipoEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,7 +19,8 @@ public class AndaimeRepositoryTest {
     @Autowired
     private AndaimeRepository andaimeRepository;
 
-
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Test
     void adicionarAndaime(){
@@ -66,5 +67,16 @@ public class AndaimeRepositoryTest {
         assertFalse(andaimeRepository.existsById(1L));
     }
 
+    @Test
+    void relacionarAndaimeComAluguel(){
+        Cliente cliente = clienteRepository.findByCpf("06698875421");
 
+        Andaime andaime = andaimeRepository.findById(3L).get();
+
+        andaime.setAluguel(cliente.getAlugueis().get(0));
+
+        Andaime andaimeRelacionado = andaimeRepository.saveAndFlush(andaime);
+
+        assertEquals(andaime.toString(), andaimeRelacionado.toString());
+    }
 }
