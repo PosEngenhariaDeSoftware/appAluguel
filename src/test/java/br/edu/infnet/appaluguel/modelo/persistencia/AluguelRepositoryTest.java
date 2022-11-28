@@ -71,6 +71,7 @@ public class AluguelRepositoryTest {
         aluguel_1.setValorAluguel(new BigDecimal(3000.0));
         aluguel_1.setStatus(StatusEnum.EM_ANDAMENTO);
         aluguel_1.setDataInicio(dataInicio_1);
+        aluguel_1.setCliente(clienteEncontrado);
 
         Aluguel aluguelSalvo_1 = aluguelRepository.save(aluguel_1);
 
@@ -81,6 +82,7 @@ public class AluguelRepositoryTest {
         aluguel_2.setValorAluguel(new BigDecimal(5000.0));
         aluguel_2.setStatus(StatusEnum.EM_APROVACAO);
         aluguel_2.setDataInicio(dataInicio_2);
+        aluguel_2.setCliente(clienteEncontrado);
 
         Aluguel aluguelSalvo_2 = aluguelRepository.save(aluguel_2);
 
@@ -92,7 +94,7 @@ public class AluguelRepositoryTest {
 
         Cliente clienteSalvoComAlugueis = clienteRepository.saveAndFlush(clienteEncontrado);
 
-        assertEquals(7L, clienteSalvoComAlugueis.getId());
-        assertEquals(2, clienteSalvoComAlugueis.getAlugueis().size());
+        assertEquals(clienteEncontrado.getId(), clienteSalvoComAlugueis.getId());
+        assertEquals(alugueis.size(), clienteSalvoComAlugueis.getAlugueis().size());
     }
 }
